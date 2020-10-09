@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "offline": "sls offline start --stage dev --httpPort 5000",
+    "deploy_dev": "sls deploy --stage dev"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "serverless-http": "^2.6.0"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.766.0",
+    "serverless-offline": "^6.5.0",
+    "serverless-plugin-typescript": "^1.1.9",
+    "typescript": "^3.9.5"
+  }
+}

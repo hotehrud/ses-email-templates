@@ -1,0 +1,34 @@
+service: email-service
+
+custom:
+  serverless-offline:
+    noPrependStageInUrl: true
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  environment:
+    STAGE: ${opt:stage}
+  region: ap-northeast-2
+  apiKeys:
+    - emailkeys
+    - ${opt:stage}-emailkeys
+  usagePlan:
+    throttle:
+      burstLimit: 1
+      rateLimit: 1
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http: ANY /
+      - http:
+          path: '{proxy+}'
+          method: any
+          private: true
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
